@@ -71,6 +71,4 @@ public class OptimalThresholding {
     public int getFinalThreshold() {
         return finalThreshold;
     }
-
-
 }

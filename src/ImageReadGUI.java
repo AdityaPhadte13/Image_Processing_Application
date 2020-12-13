@@ -99,7 +99,7 @@ public class ImageReadGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Transformation", "RGB To Grayscale", "Negative", "Intensity Slicing", "Bit Plane Slicing", "Contrast Stretching", "Smoothing Filters", "Sharpening Filters", "Histogram", "Histogram Equalization", "Optimal Thresholding" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Transformation", "RGB To Grayscale", "Negative", "Intensity Slicing", "Bit Plane Slicing", "Contrast Stretching", "Smoothing Filters", "Sharpening Filters", "Histogram", "Histogram Equalization", "Optimal Thresholding", "Gray Scale Erosion" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -400,6 +400,14 @@ public class ImageReadGUI extends javax.swing.JFrame {
                     int Th = Oth.getFinalThreshold();
                     IntensitySlicing IST = new IntensitySlicing(transform, 0, Th, 0, 255);
                     transform = IST.getImg();
+                    setTransformedImage(transform);
+                    break;
+                case "Gray Scale Erosion":
+                    setGreyCheckBoxDisabled();
+                    GreyTrans = new RGBtoGrey(transform);
+                    transform = GreyTrans.getImg();
+                    GrayScaleErosion GSE = new GrayScaleErosion(transform);
+                    transform = GSE.getImg();
                     setTransformedImage(transform);
                     break;
                 default:
